@@ -2,7 +2,7 @@ import { User, validate } from "../models/userModel.js";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 import config from "config";
 import _ from "lodash";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 //signup
 export const signUp = async (req, res) => {
