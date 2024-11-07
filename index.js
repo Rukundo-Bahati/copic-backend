@@ -1,3 +1,4 @@
+import debug from "debug";
 import exress from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
@@ -6,6 +7,8 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import socketHandler from "./socket/index.js";
 import "./db/connect.js";
+
+const log = debug("myapp");
 
 //routes
 import AuthRoute from "./routes/AuthRoute.js";
@@ -45,3 +48,4 @@ socketHandler(io);
 const PORT = process.env.PORT | 3250;
 app.listen(PORT,() => console.log(`Server started on port ${PORT}`)
 );
+log("Debugging started...");
