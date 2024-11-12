@@ -24,8 +24,8 @@ Photographer Profile
 GET /api/photographers/:id - Retrieve a photographer's profile.
 PUT /api/photographers/:id - Update a photographer's profile.
 <h3>Post Management</h3> 
-POST /api/posts - Create a new post.
-GET /api/posts - List all posts.
+<p>POST /api/posts - Create a new post.</p>
+<p>GET /api/posts - List all posts.</p>
 GET /api/posts/:id - Get details of a specific post.
 <h3>Messaging</h3>
 POST /api/messages - Send a message between clients and photographers.
@@ -41,7 +41,7 @@ JWT: Authentication via JSON Web Tokens for secure access control.
 <br>
 <h3>Contributing</h3>
 Fork the repository.
-Create a new branch for your feature (git checkout -b feature/YourFeature).
-Commit your changes (git commit -m 'Add a new feature').
+<p>Create a new branch for your feature (git checkout -b feature/YourFeature).</p>
+<p>Commit your changes (git commit -m 'Add a new feature').</p>
 Push to the branch (git push origin feature/YourFeature).
 Open a Pull Request.
