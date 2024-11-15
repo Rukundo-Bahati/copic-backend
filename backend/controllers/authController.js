@@ -31,7 +31,6 @@ export const signUp = async (req, res) => {
       token: token,
     });
 
-    console.log(token);
   } catch (error) {
     // Catch Mongoose validation errors (such as invalid phone or email)
     if (error.name === "ValidationError") {
@@ -75,24 +74,22 @@ export const login = async (req, res) => {
   try {
     const { credential, password } = req.body;
     const user = await User.findOne({ credential });
-
     if (!user) {
-      return res.status(401).json({ message: "Incorrect credentials" });
+      return res.status(401).json({ message: "Invalid credentials" }); // Unified error message
+    }
+    // Compare password
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ message: "Invalid credentials" }); // Unified error message
     }
 
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-      user?.password || ""
-    );
-
-    if (!user || !isPasswordCorrect) {
-      return res.status(400).json({ error: "Invalid username or password" });
-    }
+    // Generate token and set it in cookie
     const token = generateTokenAndSetCookie(user._id, res);
 
-    // Send the response with the necessary user details
+    // Remove password from user details before sending response
     const userDetails = _.omit(user.toObject(), ["password"]);
 
+    // Send response with user details and token
     res.status(200).json({
       user: userDetails,
       token: token,

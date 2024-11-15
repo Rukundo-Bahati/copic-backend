@@ -12,16 +12,16 @@ export default function LoginClient() {
   const navigate = useNavigate();
 
   // State for form fields
-  const [email, setEmail] = useState('');
+  const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    if (!email || !password) {
+    if (!credential || !password) {
       toast.error('All fields are required', { position: 'top-right' });
       return;
     }
 
-    const userData = {email, password };
+    const userData = { credential, password };
 
     try {
       const response = await fetch('http://localhost:3250/api/auth/login', {
@@ -38,11 +38,15 @@ export default function LoginClient() {
 
       const result = await response.json();
       toast.success('Login successful!', { position: 'top-right' });
-      dispatch({ type: SET_USER, payload: result.user }); // Assuming `result.user` contains user data
+
+      // Store user data and token in Redux and localStorage
+      dispatch({ type: SET_USER, payload: result.user }); // Save user data in Redux
+      localStorage.setItem('token', result.token); // Save token to localStorage
+
       navigate('/user'); // Redirect user to user dashboard
     } catch (err) {
       console.error('Error:', err);
-      toast.error('Failed to connect to the server', { position: 'top-right' });
+      toast.error('Some error occured.', { position: 'top-right' });
     }
   };
 
@@ -68,8 +72,8 @@ export default function LoginClient() {
             type="text"
             className="md:w-[350px] max-w-[350px] h-[50px] text-white bg-opacity-35 bg-[#817575] focus:outline-none rounded-md text-center"
             placeholder="Email or phone number"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
           />
           <input
             type="password"
@@ -84,7 +88,7 @@ export default function LoginClient() {
             style={{ minHeight: "50px", lineHeight: "40px", minWidth: "100px" }}
             onClick={handleLogin}
           >
-          Login
+            Login
           </button>
           <p>Are you new here?<Link to={'/client'}>SignUp</Link></p>
         </div>
