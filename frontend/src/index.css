@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    font-family: "Mulish", sans-serif;
+}
+
+@layer components{
+ .rbc-off-range{
+    @apply text-[#fff]
+ }
+ .rbc-off-range-bg{
+    @apply bg-[#B50418]
+ }
+ .rbc-today{
+    @apply bg-[#000000] text-white;
+ }
+ .rbc-toolbar-label{
+    @apply  text-white font-bold;
+ }
+ .rbc-btn-group > button{
+    @apply bg-blue;
+ }
+}

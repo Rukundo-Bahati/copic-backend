@@ -1,0 +1,27 @@
+[
+    {
+        "label": "Dashboard",
+        "icon": "/dash.png",
+        "active": true
+    },
+    {
+        "label": "Profile",
+        "icon": "FaRegUserCircle",
+        "active": false
+    },
+    {
+        "label": "Calendar",
+        "icon": "FaRegCalendar",
+        "active": false
+    },
+    {
+        "label": "Chat",
+        "icon": "FiMessageSquare",
+        "active": false
+    },
+    {
+        "label": "Settings",
+        "icon": "IoSettingsSharp",
+        "active": false
+    }
+]
