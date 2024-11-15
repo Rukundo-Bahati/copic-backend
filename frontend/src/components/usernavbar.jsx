@@ -25,7 +25,7 @@ const UserNavbar = () => {
         <ul className="flex flex-col text-white font-semibold md:text-base items-center gap-6 md:flex-row md:gap-8 md:mb-10">
           <Link className={ getLinkClasses("/user") } to="/user">Home</Link>
           <Link className={ getLinkClasses("/gallery") } to="/gallery">Gallery</Link>
-          <Link className={ getLinkClasses("/dashboard") } to="/dashboard">My Account</Link>
+          <Link className={ getLinkClasses("/profile") } to="/profile">My Account</Link>
           <FaBell className='text-red-500'/>
 
         </ul>
