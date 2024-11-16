@@ -1,12 +1,16 @@
 import React from "react";
 import Sidenav from "../components/sidenav";
 import Hand from "../images/Private.png";
-import user1v1 from "../images/user1v2.png";
+import user1v1 from "../images/usertwo.png";
 import { FaCamera, FaPencilAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Profile = () => {
   const dispatch = useDispatch();
+
+  // Get user data from Redux store
+  const user = useSelector((state) => state.user); // Assuming the user data is stored in state.user
+  console.log("User data from Redux:", user);
 
   return (
     <div className="bg-black flex">
@@ -17,17 +21,17 @@ const Profile = () => {
           <div className="flex flex-col items-center mt-10">
             <div className="relative flex flex-col items-center">
               <img
-                src={user1v1}
-                alt="user number one"
-                className="w-[70%]"
+                src={user.profilePicture || user1v1} // Default to user1v1 if no profile picture
+                alt="user"
+                className="w-60 h-60 object-cover rounded-full"
               />
               <FaCamera className="text-[#ffffff80] absolute bottom-[10%] right-[20%] text-[200%]" />
             </div>
             <div className="flex flex-col">
-              <h1 className="text-[#ffff] text-[120%]">Ange Vanessa</h1>
+              <h1 className="text-[#ffff] text-[120%]">{user.username || "Ange Vanessa"}</h1>
               <div className="flex gap-1 items-center">
-                <p className="text-white text-[50%]">
-                  Hello there I am using COPIC
+                <p className="text-white">
+                  {user.bio || "Hello there I am using COPIC"}
                 </p>
                 <img src={Hand} alt="hello" />
               </div>
@@ -41,10 +45,10 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                defaultValue="Ange Vanessa"
+                defaultValue={user.username || "Ange Vanessa"}
                 id="name"
-                className="py-1 ml-2 bg-[#303030] text-[#d9d9d980]"
-              />
+                className="py-1 ml-2 bg-[#303030] text-[#d9d9d980] p-4 rounded-md"
+               />
               <button className="bg-[#B50418] py-1 px-7">
                 <FaPencilAlt className="text-[#ffff]" />
               </button>
@@ -55,9 +59,9 @@ const Profile = () => {
               </label>
               <input
                 type="email"
-                defaultValue="Ange25@gmail.com"
+                defaultValue={user.email || "Ange25@gmail.com"}
                 id="email"
-                className="py-1 ml-10 bg-[#303030] text-[#d9d9d980]"
+                className="py-1 ml-10 bg-[#303030] text-[#d9d9d980] p-4 rounded-md"
               />
               <button className="bg-[#B50418] py-1 px-7">
                 <FaPencilAlt className="text-[#ffff]" />
@@ -69,9 +73,9 @@ const Profile = () => {
               </label>
               <input
                 type="password"
-                defaultValue="ange25vanessa"
+                defaultValue={user.password || "ange25vanessa"}
                 id="password"
-                className="py-1 ml-2 bg-[#303030] text-[#d9d9d980]"
+                className="py-1 ml-2 bg-[#303030] text-[#d9d9d980] p-4 rounded-md"
               />
               <button className="bg-[#B50418] py-1 px-7">
                 <FaPencilAlt className="text-[#ffff]" />
@@ -83,9 +87,9 @@ const Profile = () => {
               </label>
               <input
                 type="text"
-                defaultValue="Photographer"
+                defaultValue={user.role || "Photographer"}
                 id="Role"
-                className="py-1 ml-12 bg-[#303030] text-[#d9d9d980]"
+                className="py-1 ml-12 bg-[#303030] text-[#d9d9d980] p-4 rounded-md"
               />
               <button className="bg-[#B50418] py-1 px-7">
                 <FaPencilAlt className="text-[#ffff]" />

@@ -16,7 +16,7 @@ export default function SignUpPhotographer() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [role, setRole] = useState('photog'); // Default role could be 'client'
+  const [role, setRole] = useState('photog'); // Default role could be 'photog'
 
   const handleSignUp = async () => {
     if (!email || !password || !confirmPassword || !username) {
