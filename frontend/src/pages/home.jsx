@@ -25,7 +25,7 @@ const Home = () => {
             <br /> We help you find the perfect photographer
             <br /> to capture your most cherished moments.
           </h1>
-          <Link to={"/sign"}>
+          <Link to={"/signup"}>
             <button className="h-10 w-24 text-white bg-[#B60418] hover:bg-[#8B0313] transition-all duration-300">
               Sign Up
             </button>
