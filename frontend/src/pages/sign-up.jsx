@@ -32,13 +32,17 @@ export default function SignUp() {
           <button className="w-[250px] bg-[#686666] p-2 rounded-sm" onClick={() => handleSignUp('Client')}>
             <Link to="/client">Client</Link>
           </button>
-          <button
+          {/* <button
             className="bg-[#B60418] text-white h-[40px] w-[100px]"
             style={{ minHeight: "50px", lineHeight: "40px", minWidth: "100px" }}
           >
             Next
-          </button>
-          <p>Have an account? Sign up now</p>
+          </button> */}
+          <p>Have an account? 
+          <Link to={'/signin'}>
+          Sign in now
+          </Link>
+          </p>
         </div>
       </div>
     </div>

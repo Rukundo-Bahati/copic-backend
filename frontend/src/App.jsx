@@ -23,6 +23,7 @@ import Settings from './pages/settings'
 import Styles from './pages/Styles'
 import Progress from './pages/Progress'
 import LoginPhotographer from './pages/photographerLogin';
+import SignIn from './pages/signin';
 
 
 const routes=createBrowserRouter([
@@ -48,7 +49,7 @@ const routes=createBrowserRouter([
  },
  {
   path:"/signin",
-  element:<SignUp/>
+  element:<SignIn/>
  },
  {
   path:"/phot",
