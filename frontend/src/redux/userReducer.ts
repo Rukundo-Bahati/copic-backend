@@ -10,8 +10,10 @@ const initialState: UserState = {
 };
 
 export const userReducer = (state = initialState, action: UserActionTypes): UserState => {
+  // console.log("Action in Reducer:", action); 
   switch (action.type) {
     case SET_USER:
+      // console.log("Updating state with user:", action.payload)
       return {
         ...state,
         user: action.payload,

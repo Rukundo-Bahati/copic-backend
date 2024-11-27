@@ -37,11 +37,13 @@ export default function LoginClient() {
       }
 
       const result = await response.json();
+      // console.log("Logged In User: ",result)
       toast.success('Login successful!', { position: 'top-right' });
 
       // Store user data and token in Redux and localStorage
       dispatch({ type: SET_USER, payload: result.user }); // Save user data in Redux
-      localStorage.setItem('token', result.token); // Save token to localStorage
+      // console.log("Dispatched Action:", { type: SET_USER, payload: result.user });
+      localStorage.setItem('token', result.token); 
 
       navigate('/user'); // Redirect user to user dashboard
     } catch (err) {
@@ -73,6 +75,7 @@ export default function LoginClient() {
             className="md:w-[350px] max-w-[350px] h-[50px] text-white bg-opacity-35 bg-[#817575] focus:outline-none rounded-md text-center"
             placeholder="Email or phone number"
             value={credential}
+            autoComplete='on'
             onChange={(e) => setCredential(e.target.value)}
           />
           <input

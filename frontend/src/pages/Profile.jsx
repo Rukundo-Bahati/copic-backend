@@ -9,8 +9,8 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   // Get user data from Redux store
-  const user = useSelector((state) => state.user); // Assuming the user data is stored in state.user
-  console.log("User data from Redux:", user);
+  const user = useSelector((state) => state.user.user);
+  // console.log("User data from Redux:", user);
 
   return (
     <div className="bg-black flex">
@@ -59,7 +59,7 @@ const Profile = () => {
               </label>
               <input
                 type="email"
-                defaultValue={user.email || "Ange25@gmail.com"}
+                defaultValue={user.credential || "Ange25@gmail.com"}
                 id="email"
                 className="py-1 ml-10 bg-[#303030] text-[#d9d9d980] p-4 rounded-md"
               />
