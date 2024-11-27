@@ -27,6 +27,16 @@ export const getPost = async (req, res) => {
   }
 };
 
+export const getAllPosts = async (req, res) => {
+  try {
+    const posts = await PostModel.find(); // Find all posts
+    res.status(200).json(posts); // Return all posts
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
+  }
+};
+
 //update a post
 export const updatePost = async (req, res) => {
   const postId = req.params.id;

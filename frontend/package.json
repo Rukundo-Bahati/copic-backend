@@ -25,7 +25,8 @@
     "react-router-dom": "^6.26.0",
     "react-toastify": "^10.0.6",
     "redux": "^5.0.1",
-    "rsuite": "^5.70.2"
+    "rsuite": "^5.70.2",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

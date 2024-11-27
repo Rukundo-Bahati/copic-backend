@@ -10,7 +10,18 @@ const Profile = () => {
 
   // Get user data from Redux store
   const user = useSelector((state) => state.user.user);
-  // console.log("User data from Redux:", user);
+  console.log("User data from Redux:", user);
+
+  if (!user) {
+    return (
+      <div className="bg-black flex">
+        <Sidenav />
+        <div className="flex flex-col w-[100%]">
+          <h1 className="text-white font-bold mt-8 mb-5">Loading Profile...</h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-black flex">

@@ -6,12 +6,14 @@ import {
   getPost,
   getTimelinePosts,
   likePost,
+  getAllPosts
 } from "../controllers/postController.js";
 import authMiddleWare from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post('/',createPost)
+router.post('/create',createPost)
+router.get("/posts",getAllPosts)
 router.get('/:id', getPost)
 router.put('/:id', updatePost)
 router.delete('/:id', deletePost)
