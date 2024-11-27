@@ -37,7 +37,14 @@ export default function LoginClient() {
       }
 
       const result = await response.json();
-      // console.log("Logged In User: ",result)
+      
+      
+      // Check if the user's role is "photog"
+      if (result.user.role !== 'client') {
+        toast.error('Access denied! Only Clients can log in here.', { position: 'top-right' });
+        return;
+      }
+
       toast.success('Login successful!', { position: 'top-right' });
 
       // Store user data and token in Redux and localStorage

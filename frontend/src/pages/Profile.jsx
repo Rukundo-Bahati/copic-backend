@@ -28,7 +28,7 @@ const Profile = () => {
               <FaCamera className="text-[#ffffff80] absolute bottom-[10%] right-[20%] text-[200%]" />
             </div>
             <div className="flex flex-col">
-              <h1 className="text-[#ffff] text-[120%]">{user.username || "Ange Vanessa"}</h1>
+              <h1 className="text-[#ffff] text-2xl text-center my-5 font-bold">{user.username || "Ange Vanessa"}</h1>
               <div className="flex gap-1 items-center">
                 <p className="text-white">
                   {user.bio || "Hello there I am using COPIC"}

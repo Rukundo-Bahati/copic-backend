@@ -14,41 +14,48 @@ export default function LoginPhotographer() {
   // State for form fields
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
-
   const handleLogin = async () => {
     if (!credential || !password) {
       toast.error('All fields are required', { position: 'top-right' });
       return;
     }
-
+  
     const userData = { credential, password };
-
+  
     try {
       const response = await fetch('http://localhost:3250/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         toast.error(errorData.message || 'Something went wrong', { position: 'top-right' });
         return;
       }
-
+  
       const result = await response.json();
+  
+      // Check if the user's role is "photog"
+      if (result.user.role !== 'photog') {
+        toast.error('Access denied! Only photographers can log in here.', { position: 'top-right' });
+        return;
+      }
+  
       toast.success('Login successful!', { position: 'top-right' });
-
+  
       // Store user data and token in Redux and localStorage
       dispatch({ type: SET_USER, payload: result.user }); // Save user data in Redux
       localStorage.setItem('token', result.token); // Save token to localStorage
-
+  
       navigate('/user'); // Redirect user to user dashboard
     } catch (err) {
       console.error('Error:', err);
-      toast.error('Some error occured.', { position: 'top-right' });
+      toast.error('Some error occurred.', { position: 'top-right' });
     }
   };
+  
 
   return (
     <div

@@ -26,11 +26,11 @@ export default function SignIn() {
         <div className="bg-[#0A0B0C] md:10 p-5 flex flex-col items-center justify-center rounded-md text-white gap-5 lg:w-[30%]">
           <h1 className="font-bold text-[30px]">Sign In As</h1>
           <button className="w-[250px] bg-[#686666] p-2 rounded-sm" onClick={() => handleSignIn('Photographer')}>
-            <Link to="/phot">Photographer</Link>
+            <Link to="/photogLogin">Photographer</Link>
           </button>
           <h2 className="">Or</h2>
           <button className="w-[250px] bg-[#686666] p-2 rounded-sm" onClick={() => handleSignIn('Client')}>
-            <Link to="/client">Client</Link>
+            <Link to="/clientLogin">Client</Link>
           </button>
           {/* <button
             className="bg-[#B60418] text-white h-[40px] w-[100px]"
