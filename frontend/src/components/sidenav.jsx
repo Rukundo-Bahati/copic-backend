@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaRegUserCircle, FaRegCalendar } from "react-icons/fa";
 import { FiMessageSquare } from "react-icons/fi";
 import { IoSettingsSharp } from "react-icons/io5";
+import { BsPostcard } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 
 // Sidebar data array
@@ -25,7 +26,13 @@ const sideData = [
         path: "/Settings",
         icon: "IoSettingsSharp",
         label: "Settings"
+    },
+    {
+        path: "/newPost",
+        icon: "BsPostcard",
+        label: "Create A Post"
     }
+
 ];
 
 // Mapping icons to their corresponding components

@@ -10,7 +10,7 @@ const Profile = () => {
 
   // Get user data from Redux store
   const user = useSelector((state) => state.user.user);
-  console.log("User data from Redux:", user);
+  // console.log("User data from Redux:", user);
 
   if (!user) {
     return (

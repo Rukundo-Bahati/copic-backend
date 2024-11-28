@@ -3,21 +3,18 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaHeart, FaRegHeart, FaComment, FaShare } from "react-icons/fa";
 import UserNavbar from "../components/usernavbar";
-import { useDispatch, useSelector } from "react-redux"; // Import hooks for Redux
+import { useDispatch, useSelector } from "react-redux";
 
 export default function UserHome() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  const currentUserId = useSelector((state) => state.user._id); // Adjust based on your Redux state shape
+  const currentUserId = useSelector((state) => state.user._id);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchPostsData = async () => {
       try {
         const response = await axios.get("http://localhost:3250/api/post/posts");
-        console.log("Received posts: ", response.data);
-        
         if (Array.isArray(response.data)) {
           setPosts(response.data);
         } else {
@@ -35,13 +32,11 @@ export default function UserHome() {
   const handleLike = async (postId) => {
     try {
       const token = localStorage.getItem("token");
-
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
-
       await axios.post(`/api/post/${postId}/like`, {}, config);
       setPosts((prev) =>
         prev.map((post) =>
@@ -54,62 +49,85 @@ export default function UserHome() {
   };
 
   return (
-    <div className="bg-black bg-opacity-100">
+    <div className="bg-gray-100 min-h-screen">
       <UserNavbar />
-      <div className="py-16 px-8 bg-gray-100">
+      <div className="py-8 px-4">
         <h2 className="text-center text-3xl font-bold mb-8 text-black">
           Explore Photographers' Posts
         </h2>
         {loading ? (
-          <p className="text-center text-white">Loading posts...</p>
+          <p className="text-center text-gray-600">Loading posts...</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="flex flex-col gap-6 items-center">
             {Array.isArray(posts) && posts.length > 0 ? (
               posts.map((post) => (
                 <div
                   key={post._id}
-                  className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+                  className="bg-white max-w-md w-full rounded-lg shadow-md overflow-hidden"
                 >
+                  {/* Header */}
+                  <div className="flex items-center p-4">
+                    <img
+                      src={post.userAvatar || "default-avatar.jpg"}
+                      alt={post.username}
+                      className="w-10 h-10 rounded-full"
+                    />
+                    <h3 className="ml-3 font-medium text-gray-800">
+                      {post.username}
+                    </h3>
+                  </div>
+
+                  {/* Image */}
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-40 object-cover rounded-md"
+                    className="w-full h-64 object-cover"
                   />
-                  <h3 className="text-xl font-semibold mt-4 text-gray-800">{post.title}</h3>
-                  <p className="text-gray-500 text-sm mt-2">{post.description}</p>
-                  <div className="flex items-center mt-4 gap-6">
-                    <button
-                      className="flex items-center text-sm text-gray-600 hover:text-red-500"
-                      onClick={() => handleLike(post._id)}
-                    >
-                      {post.likes.includes(currentUserId) ? (
-                        <FaHeart className="text-red-500" />
-                      ) : (
-                        <FaRegHeart />
-                      )}
-                      <span className="ml-2">{post.likes.length}</span>
-                    </button>
+
+                  {/* Actions */}
+                  <div className="p-4">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-4 text-gray-700">
+                        <button
+                          onClick={() => handleLike(post._id)}
+                          className="text-2xl"
+                        >
+                          {post.likes.includes(currentUserId) ? (
+                            <FaHeart className="text-red-500" />
+                          ) : (
+                            <FaRegHeart />
+                          )}
+                        </button>
+                        <Link
+                          to={`/comments/${post._id}`}
+                          className="text-2xl"
+                        >
+                          <FaComment />
+                        </Link>
+                        <button className="text-2xl">
+                          <FaShare />
+                        </button>
+                      </div>
+                      <span className="text-gray-500 text-sm">
+                        {post.likes.length} likes
+                      </span>
+                    </div>
+                    {/* Description */}
+                    <p className="text-gray-800 mt-2">
+                      <span className="font-medium">{post.username}:</span>{" "}
+                      {post.description}
+                    </p>
                     <Link
-                      to={`/comments/${post._id}`}
-                      className="flex items-center text-sm text-gray-600 hover:text-blue-500"
+                      to={`/chat/${post.photographerId}`}
+                      className="block mt-4 text-center text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600"
                     >
-                      <FaComment />
-                      <span className="ml-2">{post.comments?.length}</span>
+                      Chat with Photographer
                     </Link>
-                    <button className="flex items-center text-sm text-gray-600 hover:text-green-500">
-                      <FaShare />
-                    </button>
                   </div>
-                  <Link
-                    to={`/chat/${post.photographerId}`}
-                    className="block mt-4 text-center text-white bg-red-500 px-4 py-2 rounded-md hover:bg-red-600 transition-all"
-                  >
-                    Chat with Photographer
-                  </Link>
                 </div>
               ))
             ) : (
-              <p className="text-center text-white">No posts available</p>
+              <p className="text-center text-gray-600">No posts available</p>
             )}
           </div>
         )}

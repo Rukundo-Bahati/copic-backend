@@ -23,6 +23,7 @@ import Styles from './pages/Styles'
 import Progress from './pages/Progress'
 import LoginPhotographer from './pages/photographerLogin';
 import SignIn from './pages/signin';
+import CreatePost from './components/CreatePost';
 
 
 const routes=createBrowserRouter([
@@ -113,6 +114,10 @@ const routes=createBrowserRouter([
  {
   path:"/progress",
   element:<Progress/>
+ },
+ {
+  path: "/newPost",
+  element : <CreatePost />
  }
 ])
 function App() {
