@@ -4,6 +4,9 @@ import axios from "axios";
 import { FaHeart, FaRegHeart, FaComment, FaShare } from "react-icons/fa";
 import UserNavbar from "../components/usernavbar";
 import { useDispatch, useSelector } from "react-redux";
+import Avatar from "../assets/MYLOGO.png";
+import image1 from '../assets/wallpaper3.jpg'
+import image2 from '../assets/wallpaper.jpg'
 
 export default function UserHome() {
   const [posts, setPosts] = useState([]);
@@ -14,7 +17,9 @@ export default function UserHome() {
   useEffect(() => {
     const fetchPostsData = async () => {
       try {
-        const response = await axios.get("http://localhost:3250/api/post/posts");
+        const response = await axios.get(
+          "http://localhost:3250/api/post/posts"
+        );
         if (Array.isArray(response.data)) {
           setPosts(response.data);
         } else {
@@ -63,14 +68,14 @@ export default function UserHome() {
               posts.map((post) => (
                 <div
                   key={post._id}
-                  className="bg-white max-w-md w-full rounded-lg shadow-md overflow-hidden"
+                  className="bg-white max-w-4xl w-full rounded-lg shadow-md overflow-hidden"
                 >
                   {/* Header */}
                   <div className="flex items-center p-4">
                     <img
-                      src={post.userAvatar || "default-avatar.jpg"}
+                      src={post.userAvatar || Avatar}
                       alt={post.username}
-                      className="w-10 h-10 rounded-full"
+                      className="w-12 h-12 rounded-full"
                     />
                     <h3 className="ml-3 font-medium text-gray-800">
                       {post.username}
@@ -79,9 +84,10 @@ export default function UserHome() {
 
                   {/* Image */}
                   <img
-                    src={post.image}
+                    // src={post.image}
+                    src={image1}
                     alt={post.title}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-96 object-cover object-center rounded-t-lg"
                   />
 
                   {/* Actions */}
@@ -98,10 +104,7 @@ export default function UserHome() {
                             <FaRegHeart />
                           )}
                         </button>
-                        <Link
-                          to={`/comments/${post._id}`}
-                          className="text-2xl"
-                        >
+                        <Link to={`/comments/${post._id}`} className="text-2xl">
                           <FaComment />
                         </Link>
                         <button className="text-2xl">

@@ -38,8 +38,7 @@ export default function LoginClient() {
 
       const result = await response.json();
       
-      
-      // Check if the user's role is "photog"
+      // Check if the user's role is "client"
       if (result.user.role !== 'client') {
         toast.error('Access denied! Only Clients can log in here.', { position: 'top-right' });
         return;
@@ -48,14 +47,20 @@ export default function LoginClient() {
       toast.success('Login successful!', { position: 'top-right' });
 
       // Store user data and token in Redux and localStorage
-      dispatch({ type: SET_USER, payload: result.user }); // Save user data in Redux
-      // console.log("Dispatched Action:", { type: SET_USER, payload: result.user });
-      localStorage.setItem('token', result.token); 
+      dispatch({ type: SET_USER, payload: result.user });
+      localStorage.setItem('token', result.token);
 
       navigate('/user'); // Redirect user to user dashboard
     } catch (err) {
       console.error('Error:', err);
-      toast.error('Some error occured.', { position: 'top-right' });
+      toast.error('Some error occurred.', { position: 'top-right' });
+    }
+  };
+
+  // Handle key press
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
     }
   };
 
@@ -82,8 +87,9 @@ export default function LoginClient() {
             className="md:w-[350px] max-w-[350px] h-[50px] text-white bg-opacity-35 bg-[#817575] focus:outline-none rounded-md text-center"
             placeholder="Email or phone number"
             value={credential}
-            autoComplete='on'
+            autoComplete="on"
             onChange={(e) => setCredential(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <input
             type="password"
@@ -91,6 +97,7 @@ export default function LoginClient() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           
           <button
