@@ -59,11 +59,9 @@ export default function UserHome() {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      <UserNavbar />
+ 
       <div className="py-5 px-4">
-        <h2 className="text-center text-3xl font-bold mb-8 text-black">
-          Explore Photographers' Posts
-        </h2>
+       
         {loading ? (
           <p className="text-center text-gray-600">Loading posts...</p>
         ) : (
@@ -96,7 +94,7 @@ export default function UserHome() {
 
                   {/* Actions */}
                   <div className="p-6">
-                    <div className="flex justify-between items-center mb-4">
+                    <div className="flex justify-between items-center mb-">
                       <div className="flex gap-6 text-gray-700">
                         <button
                           onClick={() => handleLike(post._id)}
@@ -122,7 +120,7 @@ export default function UserHome() {
                       </div>
                     </div>
                     {/* Description */}
-                    <p className="text-gray-800 mb-3">
+                    <p className="text-gray-800 mb-2">
                       <span className="font-medium">{post.username}:</span>{" "}
                       {post.description}
                     </p>

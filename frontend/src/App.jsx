@@ -9,7 +9,7 @@ import SignUpPhotographer from './pages/photographerSignup'
 import SignUpClient from './pages/clientSignUp'
 import Choices from './pages/field'
 import Details from './pages/personaldetails'
-import UserHome from './pages/userHome'
+import UserHome from './pages/UserHome'
 import UserGallery from './pages/gallery'
 import LoginClient from './pages/clientLogin'
 import ImageDetail from './pages/imageDetail'
@@ -24,6 +24,8 @@ import Progress from './pages/Progress'
 import LoginPhotographer from './pages/photographerLogin';
 import SignIn from './pages/signin';
 import CreatePost from './components/CreatePost';
+import UserHomePage from './components/UserHomePage';
+
 
 
 const routes=createBrowserRouter([
@@ -77,7 +79,7 @@ const routes=createBrowserRouter([
   element:<Details/>
  },{
   path:"/user",
-  element:<UserHome/>
+  element:<UserHomePage/>
  },{
   path:"/gallery",
   element:<UserGallery/>
