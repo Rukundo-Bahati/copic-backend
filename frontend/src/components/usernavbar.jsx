@@ -15,7 +15,7 @@ const UserNavbar = () => {
       : "text-white hover:text-[#B60418] border-b-4 border-transparent hover:border-[#B60418] transition-all duration-300";
 
   return (
-    <div className="w-full flex items-center justify-between py-4 px-4 bg-black text-white">
+    <div className="w-full flex items-center justify-between p-3 bg-black text-white">
       <img src={Logo} className="h-12 md:h-16" alt="Logo" />
       
       <div
