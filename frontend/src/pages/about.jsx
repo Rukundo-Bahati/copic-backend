@@ -25,12 +25,13 @@ className="max-h-[100%]"
           <h2 className="text-[40px] font-semibold">
             Connect Now !
           </h2>
-          <button
+          <a
+          href="/signup"
             className="bg-[#B60418] text-white h-[50px] w-[100px] md:mx-[200px] flex items-center justify-center "
             style={{ minHeight: "50px", lineHeight: "50px",minWidth:"100px" }}
           >
             Sign Up
-          </button>
+          </a>
         </div>
        <div className="pt-10 flex items-center justify-center">
        <Card  />

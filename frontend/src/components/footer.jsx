@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div className="bg-black flex flex-col gap-10 pt-20">
       <div className=" flex xl:flex-row flex-col justify-center items-center text-center xl:gap-[400px] ">
-        <img src={Logo} alt="Logo" className="w-[400px] " />
+        <img src={Logo} alt="Logo"className="h-16" />
         <div className="flex items-center justify-center gap-5 mb-10 ">
           <FaTwitter className="text-[#B60418] w-[40px] h-[40px]" />
           <FaInstagram className="text-[#B60418] w-[40px] h-[40px]" />

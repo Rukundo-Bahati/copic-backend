@@ -74,7 +74,7 @@ export default function LoginClient() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <img src={Logo} className="w-[300px] flex items-start justify-start" alt="Logo" />
+      <img src={Logo} className=" h-16 flex items-start justify-start" alt="Logo" />
       <div className="flex items-center justify-center flex-col">
         <div className="bg-[#0A0B0C] p-5 flex md:w-[400px] max-w-[400px] flex-col items-center justify-center rounded-md text-white gap-5">
           <div className="flex flex-col gap-1">

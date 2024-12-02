@@ -8,7 +8,7 @@ const UserHomePage = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <UserNavbar />
-      <div className="flex flex-col md:flex-row flex-1 mt-0 md:mt-0"> {/* Removed or reduced margin-top */}
+      <div className="flex flex-col md:flex-row flex-1 mt-4 gap-0"> {/* Removed or reduced margin-top */}
         {/* Main Content */}
         <div className="flex-1">
           <UserHome />
