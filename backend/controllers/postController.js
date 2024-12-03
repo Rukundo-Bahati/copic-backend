@@ -3,42 +3,32 @@ import multer from "multer";
 import PostModel from "../models/postModel.js";
 import {User} from "../models/userModel.js";
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/images"); // Save images in the "public/images" directory
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname); // Unique file names
-  },
-});
-const upload = multer({ storage });
-
 export const createPost = async (req, res) => {
-  console.log("Request Body:", req.body); 
-  console.log("Uploaded File:", req.file);
+
   try {
     const { photographerId, title, description } = req.body;
 
-    // Create new post
+    if (!photographerId || !title || !description || !req.file) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+
     const newPost = new PostModel({
       photographerId,
       title,
       description,
-      image: req.file ? `/images/${req.file.filename}` : null, // Correct image path
+      image: `/images/${req.file.filename}`, 
     });
 
-
-    // Save the post to the database
     await newPost.save();
 
-    // Respond with success
+    // Return success response with the new post details
     res.status(201).json({ message: "Post created successfully", post: newPost });
+    console.log("Post Created Successfully.")
   } catch (error) {
     console.error("Error creating post:", error);
     res.status(500).json({ message: "Failed to create post", error });
   }
 };
-
 
 //getting a post
 export const getPost = async (req, res) => {
@@ -80,7 +70,6 @@ export const updatePost = async (req, res) => {
     console.log(err);
   }
 };
-
 
 // delete a post
 export const deletePost = async (req, res) => {

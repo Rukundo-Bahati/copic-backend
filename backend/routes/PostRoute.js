@@ -9,10 +9,11 @@ import {
   getAllPosts
 } from "../controllers/postController.js";
 import authMiddleWare from "../middleware/auth.js";
+import { upload } from "../middleware/uploadMiddleware.js";
 
 const router = express.Router();
 
-router.post('/create',createPost)
+router.post("/create", upload.single("image"), createPost);
 router.get("/posts",getAllPosts)
 router.get('/:id', getPost)
 router.put('/:id', updatePost)

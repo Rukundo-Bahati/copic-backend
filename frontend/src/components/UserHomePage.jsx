@@ -8,14 +8,14 @@ const UserHomePage = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <UserNavbar />
-      <div className="flex flex-col md:flex-row flex-1 mt-4 gap-0"> {/* Removed or reduced margin-top */}
+      <div className="flex flex-col md:flex-row flex-1 mt-4 gap-0"> 
         {/* Main Content */}
         <div className="flex-1">
           <UserHome />
         </div>
 
         {/* Sidebar */}
-        <div className="hidden md:block md:w-1/4 p-4"> {/* Adjust padding here if necessary */}
+        <div className="hidden md:block md:w-1/4 p-4"> 
           <RightSidebar />
         </div>
       </div>

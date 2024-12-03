@@ -15,7 +15,6 @@ import AuthRoute from "./routes/AuthRoute.js";
 import UserRoute from "./routes/UserRoute.js";
 import ChatRoute from "./routes/ChatRoute.js";
 import PostRoute from "./routes/PostRoute.js";
-import UploadRoute from "./routes/UploadRoute.js";
 import MessageRoute from "./routes/MessageRoute.js";
 
 const app = exress();
@@ -40,7 +39,6 @@ app.use("/api/auth", AuthRoute);
 app.use("/api/user", UserRoute);
 app.use("/api/chat", ChatRoute);
 app.use("/api/post", PostRoute);
-app.use("/api/upload", UploadRoute);
 app.use("/api/message", MessageRoute);
 //intergrage socket.io with server
 socketHandler(io);

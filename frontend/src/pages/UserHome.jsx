@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { FaHeart, FaRegHeart, FaComment, FaEnvelope } from "react-icons/fa";
-import UserNavbar from "../components/usernavbar";
-import Avatar from "../assets/MYLOGO.png"; // Ensure this path is correct
-import image1 from "../assets/wallpaper3.jpg"; 
-import image2 from "../assets/wallpaper.jpg"; 
+import Avatar from "../assets/MYLOGO.png";
+import image2 from "../assets/wallpaper.jpg";
+import { fetchPosts } from "../redux/fetchPosts";
 
 export default function UserHome() {
   const [posts, setPosts] = useState([]);
@@ -13,23 +11,9 @@ export default function UserHome() {
 
   useEffect(() => {
     const fetchPostsData = async () => {
-      try {
-        console.log("Fetching posts...");
-        const response = await axios.get(
-          "http://localhost:3250/api/post/posts"
-        );
-        console.log("API Response:", response.data);
-
-        if (Array.isArray(response.data)) {
-          setPosts(response.data);
-        } else {
-          console.error("Invalid API response:", response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching posts:", error.message);
-      } finally {
-        setLoading(false);
-      }
+      const data = await fetchPosts();
+      setPosts(data);
+      setLoading(false);
     };
 
     fetchPostsData();
@@ -59,9 +43,7 @@ export default function UserHome() {
 
   return (
     <div className="bg-gray-100 min-h-screen">
- 
       <div className="py-5 px-4">
-       
         {loading ? (
           <p className="text-center text-gray-600">Loading posts...</p>
         ) : (
@@ -86,7 +68,7 @@ export default function UserHome() {
 
                   <div className="relative w-full h-[500px] bg-gray-200">
                     <img
-                      src={image2}
+                      src={post.image} 
                       alt={post.title || "Post Image"}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
@@ -94,7 +76,7 @@ export default function UserHome() {
 
                   {/* Actions */}
                   <div className="p-6">
-                    <div className="flex justify-between items-center mb-">
+                    <div className="flex justify-between items-center mb-2">
                       <div className="flex gap-6 text-gray-700">
                         <button
                           onClick={() => handleLike(post._id)}

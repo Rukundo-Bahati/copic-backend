@@ -16,7 +16,7 @@ const UserNavbar = () => {
 
   return (
     <div className="w-full flex items-center justify-between p-3 bg-black text-white">
-      <img src={Logo} className="h-12 md:h-16" alt="Logo" />
+      <img src={Logo} className="w-36" alt="Logo" />
       
       <div
         className={`fixed inset-0 bg-black bg-opacity-95 flex flex-col items-center justify-center gap-12 transition-transform transform ${

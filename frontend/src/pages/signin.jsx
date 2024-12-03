@@ -21,7 +21,7 @@ export default function SignIn() {
         height: "100vh",
       }}
     >
-      <img src={Logo} className="w-[300px] flex items-start justify-start" alt="Logo" />
+      <img src={Logo} className="w-48 flex items-start justify-start" alt="Logo" />
       <div className="flex items-center justify-center flex-col">
         <div className="bg-[#0A0B0C] md:10 p-5 flex flex-col items-center justify-center rounded-md text-white gap-5 lg:w-[30%]">
           <h1 className="font-bold text-[30px]">Sign In As</h1>

@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const PostSchema = mongoose.Schema(
   {
-    photographerId: { type: mongoose.Schema.Types.ObjectId, required: true },
-    title: String,
+    photographerId: { type: String, required: true },
+    title: { type: String, required: true },
     description: { type:String },
     likes: [],
     createdAt: {
