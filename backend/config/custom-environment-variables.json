@@ -1,4 +1,4 @@
 {
-  "PRIVATEKEY" : "secretKey",
+  "PRIVATEKEY" : "key",
   "SALT" : "salt"
 }

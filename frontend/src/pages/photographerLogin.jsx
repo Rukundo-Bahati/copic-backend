@@ -56,6 +56,13 @@ export default function LoginPhotographer() {
     }
   };
   
+  // Handle key press
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
 
   return (
     <div
@@ -81,6 +88,7 @@ export default function LoginPhotographer() {
             placeholder="Email or phone number"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <input
             type="password"
@@ -88,6 +96,7 @@ export default function LoginPhotographer() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           
           <button

@@ -16,6 +16,7 @@ import UserRoute from "./routes/UserRoute.js";
 import ChatRoute from "./routes/ChatRoute.js";
 import PostRoute from "./routes/PostRoute.js";
 import MessageRoute from "./routes/MessageRoute.js";
+import CommentModel from "./routes/commentRoute.js";
 
 const app = exress();
 const server = createServer(app);
@@ -40,6 +41,7 @@ app.use("/api/user", UserRoute);
 app.use("/api/chat", ChatRoute);
 app.use("/api/post", PostRoute);
 app.use("/api/message", MessageRoute);
+app.use("/api/comments",CommentModel)
 //intergrage socket.io with server
 socketHandler(io);
 

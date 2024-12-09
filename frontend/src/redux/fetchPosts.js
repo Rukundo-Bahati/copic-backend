@@ -14,7 +14,7 @@ export const fetchPosts = async () => {
       return [];
     }
   } catch (error) {
-    console.error("Error fetching posts:", error.message);
+    console.error("Error fetching posts:", error);
     return [];
   }
 };
